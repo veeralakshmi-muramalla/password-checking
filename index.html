@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101426">
+    <title>SecurePass | Password Security Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="#" id="brand-home">
+                <span class="brand-icon">⬡</span>
+                <span>Secure<span class="accent">Pass</span></span>
+            </a>
+
+            <div class="side-label">SECURITY CENTER</div>
+
+            <nav class="navigation">
+                <button class="nav-item active" data-page="dashboard">
+                    <span>▦</span> Dashboard
+                </button>
+                <button class="nav-item" data-page="analyzer">
+                    <span>◈</span> Password Analyzer
+                </button>
+                <button class="nav-item" data-page="generator">
+                    <span>✳</span> Password Generator
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="security-card">
+                    <span class="shield">🛡️</span>
+                    <strong>Your security matters</strong>
+                    <p>Use unique passwords for every account.</p>
+                </div>
+                <button id="theme-toggle" class="theme-button">
+                    ☾ <span>Switch appearance</span>
+                </button>
+                <button id="logout" class="nav-item logout-button">
+                    ↪ Sign out
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-area">
+            <header class="topbar">
+                <div>
+                    <div class="eyebrow">PERSONAL SECURITY WORKSPACE</div>
+                    <div class="top-title" id="page-heading">Dashboard</div>
+                </div>
+                <div class="profile">
+                    <div class="avatar" id="avatar">G</div>
+                    <div>
+                        <strong id="profile-name">Guest</strong>
+                        <span>Security user</span>
+                    </div>
+                </div>
+            </header>
+
+            <section id="auth-view" class="auth-layout">
+                <div class="auth-intro">
+                    <div class="eyebrow">YOUR DIGITAL SAFETY STARTS HERE</div>
+                    <h1>Stronger passwords.<br><span>Safer digital life.</span></h1>
+                    <p>Analyze password strength, identify risky patterns, and generate stronger passwords in one simple workspace.</p>
+
+                    <div class="auth-points">
+                        <div><span>✓</span> Real-time password analysis</div>
+                        <div><span>✓</span> Secure random password generation</div>
+                        <div><span>✓</span> Helpful security recommendations</div>
+                    </div>
+
+                    <div class="intro-footer">
+                        <span class="live-dot"></span> Password analysis happens locally in your browser
+                    </div>
+                </div>
+
+                <div class="auth-card">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-auth="login">Login</button>
+                        <button class="auth-tab" data-auth="register">Register</button>
+                    </div>
+
+                    <div id="login-form" class="auth-form">
+                        <h2>Welcome back</h2>
+                        <p class="form-subtitle">Sign in to your demo workspace.</p>
+
+                        <form id="login">
+                            <label for="login-email">Email address</label>
+                            <input id="login-email" type="email"
+                                placeholder="you@example.com" autocomplete="username" required>
+
+                            <label for="login-password">Password</label>
+                            <div class="input-wrap">
+                                <input id="login-password" type="password"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password" required>
+                                <button type="button" class="reveal"
+                                    data-target="login-password">Show</button>
+                            </div>
+
+                            <button class="primary-button full-button" type="submit">
+                                Sign in <span>→</span>
+                            </button>
+                        </form>
+
+                        <p class="switch-text">New to SecurePass?
+                            <button data-auth="register">Create account</button>
+                        </p>
+                    </div>
+
+                    <div id="register-form" class="auth-form hidden">
+                        <h2>Create your account</h2>
+                        <p class="form-subtitle">Set up your demo security workspace.</p>
+
+                        <form id="register">
+                            <label for="register-name">Full name</label>
+                            <input id="register-name" type="text"
+                                placeholder="Your name" autocomplete="name" maxlength="60" required>
+
+                            <label for="register-email">Email address</label>
+                            <input id="register-email" type="email"
+                                placeholder="you@example.com" autocomplete="username" required>
+
+                            <label for="register-password">Create password</label>
+                            <div class="input-wrap">
+                                <input id="register-password" type="password"
+                                    placeholder="At least 12 characters"
+                                    autocomplete="new-password" minlength="12" required>
+                                <button type="button" class="reveal"
+                                    data-target="register-password">Show</button>
+                            </div>
+
+                            <div class="mini-meter"><div id="register-meter"></div></div>
+                            <p id="register-hint" class="field-hint">
+                                Use 12+ characters and a mix of character types.
+                            </p>
+
+                            <label for="confirm-password">Confirm password</label>
+                            <input id="confirm-password" type="password"
+                                placeholder="Re-enter your password"
+                                autocomplete="new-password" required>
+
+                            <label class="checkbox-label">
+                                <input id="agree" type="checkbox" required>
+                                <span>I understand this is a demonstration application.</span>
+                            </label>
+
+                            <button class="primary-button full-button" type="submit">
+                                Create account <span>→</span>
+                            </button>
+                        </form>
+
+                        <p class="switch-text">Already registered?
+                            <button data-auth="login">Sign in</button>
+                        </p>
+                    </div>
+
+                    <div class="demo-note">
+                        <strong>Demo mode</strong>
+                        <p>Accounts exist only in this browser session. Don't use a real password.</p>
+                    </div>
+                    <p id="auth-message" class="notice" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+            <section id="workspace" class="hidden">
+                <div class="welcome-row">
+                    <div>
+                        <div class="eyebrow">SECURITY OVERVIEW</div>
+                        <h1 id="welcome-title">Welcome back!</h1>
+                        <p class="muted">Make every password a stronger line of defense.</p>
+                    </div>
+                    <span class="status-pill"><span class="live-dot"></span> Local analysis active</span>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-icon purple">◈</div>
+                        <span class="muted">Passwords analyzed</span>
+                        <strong id="analyzed-count">0</strong>
+                        <small>During this session</small>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-icon green">✓</div>
+                        <span class="muted">Checks passed</span>
+                        <strong id="checks-count">0</strong>
+                        <small>For the current password</small>
+                    </article>
+                    <article class="stat-card">
+                        <div class="stat-icon blue">✳</div>
+                        <span class="muted">Passwords generated</span>
+                        <strong id="generated-count">0</strong>
+                        <small>During this session</small>
+                    </article>
+                </div>
+
+                <div id="dashboard" class="page-panel">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Your security tools</h2>
+                            <p class="muted">Choose a tool to get started.</p>
+                        </div>
+                    </div>
+
+                    <div class="tools-grid">
+                        <button class="tool-card" data-page="analyzer">
+                            <span class="tool-icon purple">◈</span>
+                            <h3>Password Analyzer</h3>
+                            <p>Check password characteristics, spot common patterns, and get personalized tips.</p>
+                            <span class="tool-link">Analyze a password →</span>
+                        </button>
+                        <button class="tool-card" data-page="generator">
+                            <span class="tool-icon green">✳</span>
+                            <h3>Password Generator</h3>
+                            <p>Create a random password with configurable length and character options.</p>
+                            <span class="tool-link">Generate a password →</span>
+                        </button>
+                    </div>
+
+                    <div class="info-panel">
+                        <span class="info-icon">ⓘ</span>
+                        <div>
+                            <strong>Security tip of the day</strong>
+                            <p>Long, unique passwords are harder to guess. A password manager can help you keep a different password for every account.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analyzer" class="page-panel hidden">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Password Analyzer</h2>
+                            <p class="muted">Evaluate a sample password using basic security rules.</p>
+                        </div>
+                    </div>
+
+                    <div class="analyzer-layout">
+                        <article class="panel">
+                            <div class="panel-title">
+                                <span class="tool-icon purple">◈</span>
+                                <div><h3>Password assessment</h3><p class="muted">Results update as you type.</p></div>
+                            </div>
+
+                            <label for="password">Sample password</label>
+                            <div class="input-wrap">
+                                <input id="password" type="password"
+                                    placeholder="Enter a sample password"
+                                    autocomplete="off" spellcheck="false">
+                                <button type="button" class="reveal" id="toggle-password">Show</button>
+                            </div>
+
+                            <div class="strength-row">
+                                <span class="muted">Estimated strength</span>
+                                <strong id="strength">Not checked</strong>
+                            </div>
+                            <div class="strength-track"><div id="meter-fill"></div></div>
+
+                            <div class="requirements-heading">
+                                <strong>Password requirements</strong>
+                                <span id="rule-count">0/5</span>
+                            </div>
+                            <ul class="requirements">
+                                <li id="length">○ At least 12 characters</li>
+                                <li id="upper">○ An uppercase letter</li>
+                                <li id="lower">○ A lowercase letter</li>
+                                <li id="number">○ A number</li>
+                                <li id="symbol">○ A special character</li>
+                            </ul>
+
+                            <div id="message" class="feedback">Enter a sample password to begin.</div>
+                            <div id="security-warning" class="warning" role="status" aria-live="polite">
+                                Your analysis will appear here.
+                            </div>
+                        </article>
+
+                        <article class="panel tips-panel">
+                            <div class="tool-icon green">🛡</div>
+                            <h3>Security recommendations</h3>
+                            <p class="muted">Follow these practices to improve account security.</p>
+                            <div class="tip-item"><span>01</span><div><strong>Prioritize length</strong><p>Consider a long, unique passphrase.</p></div></div>
+                            <div class="tip-item"><span>02</span><div><strong>Avoid predictable patterns</strong><p>Don't rely on sequences or common words.</p></div></div>
+                            <div class="tip-item"><span>03</span><div><strong>Never reuse passwords</strong><p>Use a different password for each account.</p></div></div>
+                            <div class="tip-item"><span>04</span><div><strong>Use a password manager</strong><p>Store unique passwords securely.</p></div></div>
+                        </article>
+                    </div>
+                </div>
+
+                <div id="generator" class="page-panel hidden">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Password Generator</h2>
+                            <p class="muted">Generate a random password in your browser.</p>
+                        </div>
+                    </div>
+
+                    <article class="panel generator-panel">
+                        <div class="tool-icon green large-icon">✳</div>
+                        <h3>Create a strong password</h3>
+                        <p class="muted">Choose the length and character types you need.</p>
+
+                        <div class="generated-output">
+                            <input id="generated-password" type="password"
+                                placeholder="Your generated password" readonly>
+                            <button id="reveal-generated" class="secondary-button" type="button">Show</button>
+                            <button id="copy-generated" class="primary-button" type="button">Copy</button>
+                        </div>
+
+                        <div class="length-row">
+                            <label for="password-length">Password length</label>
+                            <strong id="length-value">20</strong>
+                        </div>
+                        <input id="password-length" type="range" min="12" max="40" value="20">
+
+                        <div class="option-grid">
+                            <label class="checkbox-label"><input id="opt-upper" type="checkbox" checked><span>Uppercase (A–Z)</span></label>
+                            <label class="checkbox-label"><input id="opt-lower" type="checkbox" checked><span>Lowercase (a–z)</span></label>
+                            <label class="checkbox-label"><input id="opt-number" type="checkbox" checked><span>Numbers (0–9)</span></label>
+                            <label class="checkbox-label"><input id="opt-symbol" type="checkbox" checked><span>Symbols (!@#$)</span></label>
+                        </div>
+
+                        <button id="generate" class="primary-button full-button" type="button">✳ Generate password</button>
+                        <p id="generator-message" class="field-hint" role="status" aria-live="polite">Your generated password is not saved by this demo.</p>
+                    </article>
+
+                    <div class="info-panel">
+                        <span class="info-icon">ⓘ</span>
+                        <div><strong>Keep generated passwords private</strong><p>Copying places the password on your clipboard. Avoid shared devices and clear your clipboard when appropriate.</p></div>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <span>SecurePass · Educational cybersecurity project</span>
+                    <span>Local demo · No server connection</span>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
